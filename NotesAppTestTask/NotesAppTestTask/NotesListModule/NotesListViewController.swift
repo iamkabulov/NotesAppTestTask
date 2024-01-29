@@ -9,7 +9,7 @@ import UIKit
 
 class NotesListViewController: UIViewController {
 
-	private let tableView = NotesListView(frame: .zero, style: .plain)
+	private let tableView = NotesListView()
 	private var _presenter: NotesListPresenter?
 
 	override func loadView() {
@@ -19,6 +19,7 @@ class NotesListViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		self._presenter?.viewDidLoad(tableView: self.tableView, viewController: self)
 		// Do any additional setup after loading the view.
 	}
 

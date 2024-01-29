@@ -9,20 +9,24 @@ import Foundation
 
 protocol INotesListPresenter: PresenterProtocol
 {
-	func viewDidLoad(tableView: INotesListView, viewController: NotesListViewController)
+	func viewDidLoad(tableView: NotesListView, viewController: NotesListViewController)
 }
 
 final class NotesListPresenter
 {
-	weak var _tableView: INotesListView?
+	weak var _tableView: NotesListView?
 	weak var _viewController: NotesListViewController?
 	private var _interactor: NotesListInteractor?
 	private var _router: NotesListRouter?
 }
 
 extension NotesListPresenter: INotesListPresenter {
-	func viewDidLoad(tableView: INotesListView, viewController: NotesListViewController) {
+	func viewDidLoad(tableView: NotesListView, viewController: NotesListViewController) {
 		self._tableView = tableView
+		self._tableView?.noteTappedHandler = {
+			guard let vc = self._viewController else { return }
+			self._router?.openNoteView(viewController: vc)
+		}
 	}
 
 	var viewController: ViewProtocol? {

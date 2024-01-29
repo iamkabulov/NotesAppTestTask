@@ -9,12 +9,13 @@ import UIKit
 
 protocol INotesListView: AnyObject
 {
-	
+	var noteTappedHandler: (() -> Void)? { get set }
 }
 
 final class NotesListView: UITableView
 {
 	private let tableView = UITableView()
+	var noteTappedHandler: (() -> Void)?
 
 	override init(frame: CGRect, style: UITableView.Style) {
 		super.init(frame: frame, style: style)
@@ -71,6 +72,7 @@ extension NotesListView: UITableViewDataSource {
 extension NotesListView: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		self.tableView.deselectRow(at: indexPath, animated: true)
+		noteTappedHandler?()
 	}
 }
 

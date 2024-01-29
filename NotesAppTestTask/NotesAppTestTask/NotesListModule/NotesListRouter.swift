@@ -5,7 +5,7 @@
 //  Created by Nursultan Kabulov on 29.01.2024.
 //
 
-import Foundation
+import UIKit
 
 protocol INotesListRouter: AnyObject, RouterProtocol
 {
@@ -18,5 +18,7 @@ final class NotesListRouter
 }
 
 extension NotesListRouter: INotesListRouter {
-	
+	func openNoteView(viewController: NotesListViewController) {
+		viewController.present(NoteViewController(), animated: true)
+	}
 }

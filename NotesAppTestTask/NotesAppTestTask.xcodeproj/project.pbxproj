@@ -19,6 +19,7 @@
 		B05E79F52B67F94C0063514C /* NotesListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05E79F42B67F94C0063514C /* NotesListEntity.swift */; };
 		B05E79F72B67F9650063514C /* NotesListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05E79F62B67F9650063514C /* NotesListRouter.swift */; };
 		B05E79F92B6807C30063514C /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05E79F82B6807C30063514C /* ModuleBuilder.swift */; };
+		B05E79FB2B6810250063514C /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05E79FA2B6810250063514C /* NoteViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		B05E79F42B67F94C0063514C /* NotesListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListEntity.swift; sourceTree = "<group>"; };
 		B05E79F62B67F9650063514C /* NotesListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListRouter.swift; sourceTree = "<group>"; };
 		B05E79F82B6807C30063514C /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
+		B05E79FA2B6810250063514C /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,16 +70,13 @@
 		B05E79D62B67E88E0063514C /* NotesAppTestTask */ = {
 			isa = PBXGroup;
 			children = (
+				B05E79D72B67E88E0063514C /* AppDelegate.swift */,
+				B05E79D92B67E88E0063514C /* SceneDelegate.swift */,
 				B05E79F82B6807C30063514C /* ModuleBuilder.swift */,
-				B05E79DB2B67E88E0063514C /* NotesListViewController.swift */,
-				B05E79F02B67F8C70063514C /* NotesListPresenter.swift */,
-				B05E79F22B67F91F0063514C /* NotesListInteractor.swift */,
-				B05E79F42B67F94C0063514C /* NotesListEntity.swift */,
-				B05E79F62B67F9650063514C /* NotesListRouter.swift */,
-				B05E79EC2B67EE080063514C /* NotesListView.swift */,
-				B05E79EE2B67F01B0063514C /* NotesCellView.swift */,
-				B05E79E52B67E8900063514C /* Info.plist */,
+				B05E79FD2B68115C0063514C /* NoteModule */,
+				B05E79FC2B6811340063514C /* NotesListModule */,
 				B05E79EB2B67EC0A0063514C /* Utils */,
+				B05E79E52B67E8900063514C /* Info.plist */,
 			);
 			path = NotesAppTestTask;
 			sourceTree = "<group>";
@@ -85,12 +84,32 @@
 		B05E79EB2B67EC0A0063514C /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				B05E79D72B67E88E0063514C /* AppDelegate.swift */,
-				B05E79D92B67E88E0063514C /* SceneDelegate.swift */,
 				B05E79E02B67E8900063514C /* Assets.xcassets */,
 				B05E79E22B67E8900063514C /* LaunchScreen.storyboard */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		B05E79FC2B6811340063514C /* NotesListModule */ = {
+			isa = PBXGroup;
+			children = (
+				B05E79DB2B67E88E0063514C /* NotesListViewController.swift */,
+				B05E79F02B67F8C70063514C /* NotesListPresenter.swift */,
+				B05E79F22B67F91F0063514C /* NotesListInteractor.swift */,
+				B05E79F42B67F94C0063514C /* NotesListEntity.swift */,
+				B05E79F62B67F9650063514C /* NotesListRouter.swift */,
+				B05E79EC2B67EE080063514C /* NotesListView.swift */,
+				B05E79EE2B67F01B0063514C /* NotesCellView.swift */,
+			);
+			path = NotesListModule;
+			sourceTree = "<group>";
+		};
+		B05E79FD2B68115C0063514C /* NoteModule */ = {
+			isa = PBXGroup;
+			children = (
+				B05E79FA2B6810250063514C /* NoteViewController.swift */,
+			);
+			path = NoteModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,6 +185,7 @@
 				B05E79F12B67F8C70063514C /* NotesListPresenter.swift in Sources */,
 				B05E79EF2B67F01B0063514C /* NotesCellView.swift in Sources */,
 				B05E79F72B67F9650063514C /* NotesListRouter.swift in Sources */,
+				B05E79FB2B6810250063514C /* NoteViewController.swift in Sources */,
 				B05E79F92B6807C30063514C /* ModuleBuilder.swift in Sources */,
 				B05E79F52B67F94C0063514C /* NotesListEntity.swift in Sources */,
 				B05E79DC2B67E88E0063514C /* NotesListViewController.swift in Sources */,
