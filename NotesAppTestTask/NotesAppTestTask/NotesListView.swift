@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol INotesListView: AnyObject
+{
+	
+}
+
 final class NotesListView: UITableView
 {
 	private let tableView = UITableView()

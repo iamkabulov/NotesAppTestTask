@@ -7,7 +7,16 @@
 
 import Foundation
 
+protocol INotesListRouter: AnyObject, RouterProtocol
+{
+	
+}
+
 final class NotesListRouter
 {
+	
+}
+
+extension NotesListRouter: INotesListRouter {
 	
 }

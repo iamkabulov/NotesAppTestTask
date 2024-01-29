@@ -18,6 +18,7 @@
 		B05E79F32B67F91F0063514C /* NotesListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05E79F22B67F91F0063514C /* NotesListInteractor.swift */; };
 		B05E79F52B67F94C0063514C /* NotesListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05E79F42B67F94C0063514C /* NotesListEntity.swift */; };
 		B05E79F72B67F9650063514C /* NotesListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05E79F62B67F9650063514C /* NotesListRouter.swift */; };
+		B05E79F92B6807C30063514C /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05E79F82B6807C30063514C /* ModuleBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		B05E79F22B67F91F0063514C /* NotesListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListInteractor.swift; sourceTree = "<group>"; };
 		B05E79F42B67F94C0063514C /* NotesListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListEntity.swift; sourceTree = "<group>"; };
 		B05E79F62B67F9650063514C /* NotesListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListRouter.swift; sourceTree = "<group>"; };
+		B05E79F82B6807C30063514C /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 		B05E79D62B67E88E0063514C /* NotesAppTestTask */ = {
 			isa = PBXGroup;
 			children = (
+				B05E79F82B6807C30063514C /* ModuleBuilder.swift */,
 				B05E79DB2B67E88E0063514C /* NotesListViewController.swift */,
 				B05E79F02B67F8C70063514C /* NotesListPresenter.swift */,
 				B05E79F22B67F91F0063514C /* NotesListInteractor.swift */,
@@ -163,6 +166,7 @@
 				B05E79F12B67F8C70063514C /* NotesListPresenter.swift in Sources */,
 				B05E79EF2B67F01B0063514C /* NotesCellView.swift in Sources */,
 				B05E79F72B67F9650063514C /* NotesListRouter.swift in Sources */,
+				B05E79F92B6807C30063514C /* ModuleBuilder.swift in Sources */,
 				B05E79F52B67F94C0063514C /* NotesListEntity.swift in Sources */,
 				B05E79DC2B67E88E0063514C /* NotesListViewController.swift in Sources */,
 				B05E79D82B67E88E0063514C /* AppDelegate.swift in Sources */,

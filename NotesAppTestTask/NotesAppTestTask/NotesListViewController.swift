@@ -10,6 +10,7 @@ import UIKit
 class NotesListViewController: UIViewController {
 
 	private let tableView = NotesListView(frame: .zero, style: .plain)
+	private var _presenter: NotesListPresenter?
 
 	override func loadView() {
 		super.loadView()
@@ -24,3 +25,14 @@ class NotesListViewController: UIViewController {
 
 }
 
+extension NotesListViewController: ViewProtocol
+{
+	var presenter: PresenterProtocol? {
+		get {
+			return self._presenter
+		}
+		set {
+			self._presenter = newValue as? NotesListPresenter
+		}
+	}
+}

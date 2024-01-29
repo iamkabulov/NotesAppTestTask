@@ -18,7 +18,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		// This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 		if let windowScene = scene as? UIWindowScene {
 			let window = UIWindow(windowScene: windowScene)
-			window.rootViewController = NotesListViewController()
+
+			let notesListInteractor = NotesListInteractor()
+			let notesListRouter = NotesListRouter()
+			let notesListPresenter = NotesListPresenter()
+			let notesListViewController = NotesListViewController()
+
+			let notesBuilder = ModuleBuilder<NotesListViewController, NotesListInteractor, NotesListPresenter, NotesListRouter>()
+
+			let notesModule = notesBuilder.setView(notesListViewController)
+				.setInteractor(notesListInteractor)
+				.setPresenter(notesListPresenter)
+				.setRouter(notesListRouter)
+				.buildModule()
+
+			window.rootViewController = notesModule as? UIViewController
 			self.window = window
 			window.makeKeyAndVisible()
 		}

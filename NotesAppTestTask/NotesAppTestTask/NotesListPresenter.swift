@@ -7,7 +7,50 @@
 
 import Foundation
 
+protocol INotesListPresenter: PresenterProtocol
+{
+	func viewDidLoad(tableView: INotesListView, viewController: NotesListViewController)
+}
+
 final class NotesListPresenter
 {
-	
+	weak var _tableView: INotesListView?
+	weak var _viewController: NotesListViewController?
+	private var _interactor: NotesListInteractor?
+	private var _router: NotesListRouter?
+}
+
+extension NotesListPresenter: INotesListPresenter {
+	func viewDidLoad(tableView: INotesListView, viewController: NotesListViewController) {
+		self._tableView = tableView
+	}
+
+	var viewController: ViewProtocol? {
+		get {
+			return self._viewController
+		}
+		set {
+			self._viewController = newValue as? NotesListViewController
+		}
+	}
+
+	var interactor: InteractorProtocol? {
+		get {
+			return self._interactor
+		}
+		set {
+			self._interactor = newValue as? NotesListInteractor
+		}
+	}
+
+	var router: RouterProtocol? {
+		get {
+			return self._router
+		}
+		set {
+			self._router = newValue as? NotesListRouter
+		}
+	}
+
+
 }

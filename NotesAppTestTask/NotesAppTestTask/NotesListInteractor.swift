@@ -7,7 +7,25 @@
 
 import Foundation
 
-final class NotesListInteractor
+protocol INotesListInteractor: InteractorProtocol
 {
 	
+}
+
+final class NotesListInteractor
+{
+	weak var _presenter: NotesListPresenter?
+}
+
+extension NotesListInteractor: INotesListInteractor {
+	var presenter: PresenterProtocol? {
+		get {
+			return self._presenter
+		}
+		set {
+			self._presenter = newValue as? NotesListPresenter
+		}
+	}
+
+
 }
