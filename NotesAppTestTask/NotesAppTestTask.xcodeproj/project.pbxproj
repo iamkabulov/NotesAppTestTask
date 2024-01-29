@@ -9,19 +9,31 @@
 /* Begin PBXBuildFile section */
 		B05E79D82B67E88E0063514C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05E79D72B67E88E0063514C /* AppDelegate.swift */; };
 		B05E79DA2B67E88E0063514C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05E79D92B67E88E0063514C /* SceneDelegate.swift */; };
-		B05E79DC2B67E88E0063514C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05E79DB2B67E88E0063514C /* ViewController.swift */; };
+		B05E79DC2B67E88E0063514C /* NotesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05E79DB2B67E88E0063514C /* NotesListViewController.swift */; };
 		B05E79E12B67E8900063514C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B05E79E02B67E8900063514C /* Assets.xcassets */; };
 		B05E79E42B67E8900063514C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B05E79E22B67E8900063514C /* LaunchScreen.storyboard */; };
+		B05E79ED2B67EE080063514C /* NotesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05E79EC2B67EE080063514C /* NotesListView.swift */; };
+		B05E79EF2B67F01B0063514C /* NotesCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05E79EE2B67F01B0063514C /* NotesCellView.swift */; };
+		B05E79F12B67F8C70063514C /* NotesListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05E79F02B67F8C70063514C /* NotesListPresenter.swift */; };
+		B05E79F32B67F91F0063514C /* NotesListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05E79F22B67F91F0063514C /* NotesListInteractor.swift */; };
+		B05E79F52B67F94C0063514C /* NotesListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05E79F42B67F94C0063514C /* NotesListEntity.swift */; };
+		B05E79F72B67F9650063514C /* NotesListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05E79F62B67F9650063514C /* NotesListRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B05E79D42B67E88E0063514C /* NotesAppTestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesAppTestTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B05E79D72B67E88E0063514C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B05E79D92B67E88E0063514C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B05E79DB2B67E88E0063514C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B05E79DB2B67E88E0063514C /* NotesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListViewController.swift; sourceTree = "<group>"; };
 		B05E79E02B67E8900063514C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B05E79E32B67E8900063514C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B05E79E52B67E8900063514C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B05E79EC2B67EE080063514C /* NotesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListView.swift; sourceTree = "<group>"; };
+		B05E79EE2B67F01B0063514C /* NotesCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesCellView.swift; sourceTree = "<group>"; };
+		B05E79F02B67F8C70063514C /* NotesListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListPresenter.swift; sourceTree = "<group>"; };
+		B05E79F22B67F91F0063514C /* NotesListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListInteractor.swift; sourceTree = "<group>"; };
+		B05E79F42B67F94C0063514C /* NotesListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListEntity.swift; sourceTree = "<group>"; };
+		B05E79F62B67F9650063514C /* NotesListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,8 +66,15 @@
 		B05E79D62B67E88E0063514C /* NotesAppTestTask */ = {
 			isa = PBXGroup;
 			children = (
+				B05E79DB2B67E88E0063514C /* NotesListViewController.swift */,
+				B05E79F02B67F8C70063514C /* NotesListPresenter.swift */,
+				B05E79F22B67F91F0063514C /* NotesListInteractor.swift */,
+				B05E79F42B67F94C0063514C /* NotesListEntity.swift */,
+				B05E79F62B67F9650063514C /* NotesListRouter.swift */,
+				B05E79EC2B67EE080063514C /* NotesListView.swift */,
+				B05E79EE2B67F01B0063514C /* NotesCellView.swift */,
+				B05E79E52B67E8900063514C /* Info.plist */,
 				B05E79EB2B67EC0A0063514C /* Utils */,
-				B05E79DB2B67E88E0063514C /* ViewController.swift */,
 			);
 			path = NotesAppTestTask;
 			sourceTree = "<group>";
@@ -67,7 +86,6 @@
 				B05E79D92B67E88E0063514C /* SceneDelegate.swift */,
 				B05E79E02B67E8900063514C /* Assets.xcassets */,
 				B05E79E22B67E8900063514C /* LaunchScreen.storyboard */,
-				B05E79E52B67E8900063514C /* Info.plist */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -142,8 +160,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B05E79DC2B67E88E0063514C /* ViewController.swift in Sources */,
+				B05E79F12B67F8C70063514C /* NotesListPresenter.swift in Sources */,
+				B05E79EF2B67F01B0063514C /* NotesCellView.swift in Sources */,
+				B05E79F72B67F9650063514C /* NotesListRouter.swift in Sources */,
+				B05E79F52B67F94C0063514C /* NotesListEntity.swift in Sources */,
+				B05E79DC2B67E88E0063514C /* NotesListViewController.swift in Sources */,
 				B05E79D82B67E88E0063514C /* AppDelegate.swift in Sources */,
+				B05E79ED2B67EE080063514C /* NotesListView.swift in Sources */,
+				B05E79F32B67F91F0063514C /* NotesListInteractor.swift in Sources */,
 				B05E79DA2B67E88E0063514C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

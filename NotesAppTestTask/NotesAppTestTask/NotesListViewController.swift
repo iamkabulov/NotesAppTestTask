@@ -7,11 +7,17 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class NotesListViewController: UIViewController {
+
+	private let tableView = NotesListView(frame: .zero, style: .plain)
+
+	override func loadView() {
+		super.loadView()
+		self.view = self.tableView
+	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		view.backgroundColor = UIColor.blue
 		// Do any additional setup after loading the view.
 	}
 
