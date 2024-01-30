@@ -20,6 +20,10 @@
 		B05E79F72B67F9650063514C /* NotesListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05E79F62B67F9650063514C /* NotesListRouter.swift */; };
 		B05E79F92B6807C30063514C /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05E79F82B6807C30063514C /* ModuleBuilder.swift */; };
 		B05E79FB2B6810250063514C /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05E79FA2B6810250063514C /* NoteViewController.swift */; };
+		B0E64C902B6945D200123FDC /* NotePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E64C8F2B6945D200123FDC /* NotePresenter.swift */; };
+		B0E64C922B69477B00123FDC /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E64C912B69477B00123FDC /* NoteView.swift */; };
+		B0E64C942B6947E700123FDC /* NoteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E64C932B6947E700123FDC /* NoteInteractor.swift */; };
+		B0E64C962B69480100123FDC /* NoteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E64C952B69480100123FDC /* NoteRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +42,10 @@
 		B05E79F62B67F9650063514C /* NotesListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListRouter.swift; sourceTree = "<group>"; };
 		B05E79F82B6807C30063514C /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		B05E79FA2B6810250063514C /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
+		B0E64C8F2B6945D200123FDC /* NotePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotePresenter.swift; sourceTree = "<group>"; };
+		B0E64C912B69477B00123FDC /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
+		B0E64C932B6947E700123FDC /* NoteInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteInteractor.swift; sourceTree = "<group>"; };
+		B0E64C952B69480100123FDC /* NoteRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +116,10 @@
 			isa = PBXGroup;
 			children = (
 				B05E79FA2B6810250063514C /* NoteViewController.swift */,
+				B0E64C8F2B6945D200123FDC /* NotePresenter.swift */,
+				B0E64C912B69477B00123FDC /* NoteView.swift */,
+				B0E64C932B6947E700123FDC /* NoteInteractor.swift */,
+				B0E64C952B69480100123FDC /* NoteRouter.swift */,
 			);
 			path = NoteModule;
 			sourceTree = "<group>";
@@ -186,11 +198,15 @@
 				B05E79EF2B67F01B0063514C /* NotesCellView.swift in Sources */,
 				B05E79F72B67F9650063514C /* NotesListRouter.swift in Sources */,
 				B05E79FB2B6810250063514C /* NoteViewController.swift in Sources */,
+				B0E64C902B6945D200123FDC /* NotePresenter.swift in Sources */,
 				B05E79F92B6807C30063514C /* ModuleBuilder.swift in Sources */,
 				B05E79F52B67F94C0063514C /* NotesListEntity.swift in Sources */,
 				B05E79DC2B67E88E0063514C /* NotesListViewController.swift in Sources */,
 				B05E79D82B67E88E0063514C /* AppDelegate.swift in Sources */,
 				B05E79ED2B67EE080063514C /* NotesListView.swift in Sources */,
+				B0E64C962B69480100123FDC /* NoteRouter.swift in Sources */,
+				B0E64C942B6947E700123FDC /* NoteInteractor.swift in Sources */,
+				B0E64C922B69477B00123FDC /* NoteView.swift in Sources */,
 				B05E79F32B67F91F0063514C /* NotesListInteractor.swift in Sources */,
 				B05E79DA2B67E88E0063514C /* SceneDelegate.swift in Sources */,
 			);

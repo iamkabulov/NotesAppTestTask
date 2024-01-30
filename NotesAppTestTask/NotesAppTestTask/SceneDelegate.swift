@@ -26,13 +26,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 			let notesBuilder = ModuleBuilder<NotesListViewController, NotesListInteractor, NotesListPresenter, NotesListRouter>()
 
-			let notesModule = notesBuilder.setView(notesListViewController)
+			guard let notesModule = notesBuilder.setView(notesListViewController)
 				.setInteractor(notesListInteractor)
 				.setPresenter(notesListPresenter)
 				.setRouter(notesListRouter)
-				.buildModule()
-
-			window.rootViewController = notesModule as? UIViewController
+				.buildModule() as? UIViewController else { return }
+			
+			let nav = UINavigationController()
+			nav.viewControllers = [notesModule]
+			window.rootViewController = nav
 			self.window = window
 			window.makeKeyAndVisible()
 		}

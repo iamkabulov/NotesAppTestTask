@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol INotesListRouter: AnyObject, RouterProtocol
+protocol INotesListRouter: RouterProtocol
 {
 	
 }
@@ -19,7 +19,19 @@ final class NotesListRouter
 
 extension NotesListRouter: INotesListRouter {
 	func openNoteView(viewController: NotesListViewController) {
-//		viewController.present(NoteViewController(), animated: true)
-		viewController.navigationController?.pushViewController(NoteViewController(), animated: true)
+		let noteInteractor = NoteInteractor()
+		let noteRouter = NoteRouter()
+		let notePresenter = NotePresenter()
+		let noteViewController = NoteViewController()
+
+		let noteBuilder = ModuleBuilder<NoteViewController, NoteInteractor, NotePresenter, NoteRouter>()
+
+		guard let noteModule = noteBuilder.setView(noteViewController)
+			.setInteractor(noteInteractor)
+			.setPresenter(notePresenter)
+			.setRouter(noteRouter)
+			.buildModule() as? UIViewController else { return }
+		
+		viewController.navigationController?.pushViewController(noteModule, animated: true)
 	}
 }
