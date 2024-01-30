@@ -38,6 +38,13 @@ final class NotesCellView: UITableViewCell
 		return label
 	}()
 
+	lazy private var arrowImage: UIImageView = {
+		let image = UIImageView()
+		image.image = UIImage(systemName: "chevron.right")
+		image.tintColor = .systemGray2
+		return image
+	}()
+
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 		setupCellView()
@@ -53,16 +60,20 @@ extension NotesCellView {
 	func setupCellView() {
 		title.translatesAutoresizingMaskIntoConstraints = false
 		body.translatesAutoresizingMaskIntoConstraints = false
+		arrowImage.translatesAutoresizingMaskIntoConstraints = false
 
 		contentView.addSubview(title)
 		contentView.addSubview(body)
+		contentView.addSubview(arrowImage)
 		NSLayoutConstraint.activate([
 			title.topAnchor.constraint(equalTo: topAnchor, constant: Metrics.Spacing.medium),
 			title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Metrics.Spacing.large),
-			title.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Metrics.Spacing.large),
+			title.trailingAnchor.constraint(equalTo: arrowImage.trailingAnchor, constant: -Metrics.Spacing.large),
 			body.topAnchor.constraint(equalTo: title.bottomAnchor, constant: Metrics.Spacing.small),
 			body.leadingAnchor.constraint(equalTo: title.leadingAnchor),
-			body.trailingAnchor.constraint(equalTo: title.trailingAnchor)
+			body.trailingAnchor.constraint(equalTo: title.trailingAnchor),
+			arrowImage.centerYAnchor.constraint(equalTo: centerYAnchor),
+			arrowImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Metrics.Spacing.large)
 		])
 	}
 }

@@ -24,8 +24,7 @@ extension NotesListPresenter: INotesListPresenter {
 	func viewDidLoad(tableView: NotesListView, viewController: NotesListViewController) {
 		self._tableView = tableView
 		self._tableView?.noteTappedHandler = {
-			guard let vc = self._viewController else { return }
-			self._router?.openNoteView(viewController: vc)
+			self._router?.openNoteView(viewController: viewController)
 		}
 	}
 

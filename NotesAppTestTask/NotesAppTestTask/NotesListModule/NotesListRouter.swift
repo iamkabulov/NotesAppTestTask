@@ -19,6 +19,7 @@ final class NotesListRouter
 
 extension NotesListRouter: INotesListRouter {
 	func openNoteView(viewController: NotesListViewController) {
-		viewController.present(NoteViewController(), animated: true)
+//		viewController.present(NoteViewController(), animated: true)
+		viewController.navigationController?.pushViewController(NoteViewController(), animated: true)
 	}
 }

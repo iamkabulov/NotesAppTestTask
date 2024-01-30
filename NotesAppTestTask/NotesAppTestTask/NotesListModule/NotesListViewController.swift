@@ -19,6 +19,8 @@ class NotesListViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		self.title = "Notes"
+		self.navigationController?.navigationBar.prefersLargeTitles = true
 		self._presenter?.viewDidLoad(tableView: self.tableView, viewController: self)
 		// Do any additional setup after loading the view.
 	}
