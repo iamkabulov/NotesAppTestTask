@@ -24,6 +24,8 @@
 		B0E64C922B69477B00123FDC /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E64C912B69477B00123FDC /* NoteView.swift */; };
 		B0E64C942B6947E700123FDC /* NoteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E64C932B6947E700123FDC /* NoteInteractor.swift */; };
 		B0E64C962B69480100123FDC /* NoteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E64C952B69480100123FDC /* NoteRouter.swift */; };
+		B0E64C982B6A1CC600123FDC /* Notes+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E64C972B6A1CC600123FDC /* Notes+CoreData.swift */; };
+		B0E64C9B2B6A300600123FDC /* NotesData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B0E64C992B6A300600123FDC /* NotesData.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		B0E64C912B69477B00123FDC /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
 		B0E64C932B6947E700123FDC /* NoteInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteInteractor.swift; sourceTree = "<group>"; };
 		B0E64C952B69480100123FDC /* NoteRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRouter.swift; sourceTree = "<group>"; };
+		B0E64C972B6A1CC600123FDC /* Notes+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notes+CoreData.swift"; sourceTree = "<group>"; };
+		B0E64C9A2B6A300600123FDC /* NotesData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NotesData.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,7 @@
 		B05E79CB2B67E88E0063514C = {
 			isa = PBXGroup;
 			children = (
+				B0E64C992B6A300600123FDC /* NotesData.xcdatamodeld */,
 				B05E79D62B67E88E0063514C /* NotesAppTestTask */,
 				B05E79D52B67E88E0063514C /* Products */,
 			);
@@ -81,6 +86,7 @@
 				B05E79D72B67E88E0063514C /* AppDelegate.swift */,
 				B05E79D92B67E88E0063514C /* SceneDelegate.swift */,
 				B05E79F82B6807C30063514C /* ModuleBuilder.swift */,
+				B0E64C972B6A1CC600123FDC /* Notes+CoreData.swift */,
 				B05E79FD2B68115C0063514C /* NoteModule */,
 				B05E79FC2B6811340063514C /* NotesListModule */,
 				B05E79EB2B67EC0A0063514C /* Utils */,
@@ -200,6 +206,8 @@
 				B05E79FB2B6810250063514C /* NoteViewController.swift in Sources */,
 				B0E64C902B6945D200123FDC /* NotePresenter.swift in Sources */,
 				B05E79F92B6807C30063514C /* ModuleBuilder.swift in Sources */,
+				B0E64C9B2B6A300600123FDC /* NotesData.xcdatamodeld in Sources */,
+				B0E64C982B6A1CC600123FDC /* Notes+CoreData.swift in Sources */,
 				B05E79F52B67F94C0063514C /* NotesListEntity.swift in Sources */,
 				B05E79DC2B67E88E0063514C /* NotesListViewController.swift in Sources */,
 				B05E79D82B67E88E0063514C /* AppDelegate.swift in Sources */,
@@ -416,6 +424,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B0E64C992B6A300600123FDC /* NotesData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B0E64C9A2B6A300600123FDC /* NotesData.xcdatamodel */,
+			);
+			currentVersion = B0E64C9A2B6A300600123FDC /* NotesData.xcdatamodel */;
+			path = NotesData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B05E79CC2B67E88E0063514C /* Project object */;
 }

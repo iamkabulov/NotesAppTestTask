@@ -42,7 +42,6 @@ extension NotesListViewController: ViewProtocol
 	}
 
 	@objc func openNewNoteScreen() {
-		let uuid = UUID()
-		self._presenter?.openNewNoteScreen(viewController: self, uuid: uuid)
+		self._presenter?.openNewNoteScreen(viewController: self)
 	}
 }

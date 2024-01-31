@@ -10,12 +10,15 @@ import UIKit
 protocol INotesListView: AnyObject
 {
 	var noteTappedHandler: ((UUID) -> Void)? { get set }
+	func setData(_ notes: [NotesListEntity])
+	func reload()
 }
 
 final class NotesListView: UITableView
 {
 	private let tableView = UITableView()
 	var noteTappedHandler: ((UUID) -> Void)?
+	private var notes: [NotesListEntity] = []
 
 	override init(frame: CGRect, style: UITableView.Style) {
 		super.init(frame: frame, style: style)
@@ -29,7 +32,15 @@ final class NotesListView: UITableView
 	}
 }
 
-extension NotesListView {
+extension NotesListView: INotesListView {
+	func reload() {
+		self.tableView.reloadData()
+	}
+
+	func setData(_ notes: [NotesListEntity]) {
+		self.notes = notes
+	}
+
 	func setupTableView() {
 		self.tableView.translatesAutoresizingMaskIntoConstraints = false
 		addSubview(tableView)
@@ -43,7 +54,6 @@ extension NotesListView {
 	}
 
 	func configureTableView() {
-
 		self.tableView.register(NotesCellView.self, forCellReuseIdentifier: NotesCellView.reuseId)
 		self.tableView.delegate = self
 		self.tableView.dataSource = self
@@ -54,13 +64,15 @@ extension NotesListView {
 //MARK: - UITableViewDataSource
 extension NotesListView: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		20
+		notes.count
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = self.tableView.dequeueReusableCell(withIdentifier: NotesCellView.reuseId, for: indexPath) as? NotesCellView
 		//TODO: -
 		guard let cell = cell else { return UITableViewCell() }
+		cell.setData(note: notes[indexPath.item])
+
 
 		return cell
 	}
@@ -72,8 +84,8 @@ extension NotesListView: UITableViewDataSource {
 extension NotesListView: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		self.tableView.deselectRow(at: indexPath, animated: true)
-		let uuid = UUID() // удалить потом
-		noteTappedHandler?(uuid)
+		let id = notes[indexPath.item].id
+		noteTappedHandler?(id)
 	}
 }
 

@@ -10,17 +10,28 @@ import Foundation
 protocol INotePresenter: PresenterProtocol
 {
 	func viewDidLoad(view: NoteView, viewController: NoteViewController)
+	func loadNote(id: UUID)
+	func showNote(_ note: NotesListEntity?)
 }
 
 final class NotePresenter
 {
-	weak var _view: NoteView?
+	weak var _view: INoteView?
 	weak var _viewController: NoteViewController?
 	private var _interactor: NoteInteractor?
 	private var _router: NoteRouter?
 }
 
 extension NotePresenter: INotePresenter {
+	func showNote(_ note: NotesListEntity?) {
+		guard let note = note else { return }
+		self._view?.showNote(note)
+	}
+
+	func loadNote(id: UUID) {
+		self._interactor?.loadNoteBy(id: id)
+	}
+
 	func viewDidLoad(view: NoteView, viewController: NoteViewController) {
 		self._view = view
 	}

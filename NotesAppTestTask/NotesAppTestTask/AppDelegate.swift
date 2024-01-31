@@ -14,6 +14,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
+
+		if UserDefaults.standard.bool(forKey: "HasLaunchedBefore") == false {
+			UserDefaults.standard.set(true, forKey: "HasLaunchedBefore")
+			UserDefaults.standard.synchronize()
+
+			let context = NotesCoreData.shared.context
+			let newNote = NoteData(context: context)
+			newNote.id = UUID()
+			newNote.title = "Initial Note"
+			newNote.body = "This is an automatically generated note."
+			
+			NotesCoreData.shared.saveContext()
+		}
 		return true
 	}
 

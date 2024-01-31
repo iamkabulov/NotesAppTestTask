@@ -76,4 +76,9 @@ extension NotesCellView {
 			arrowImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Metrics.Spacing.large)
 		])
 	}
+
+	func setData(note: NotesListEntity) {
+		self.title.text = note.title
+		self.body.text = note.body
+	}
 }

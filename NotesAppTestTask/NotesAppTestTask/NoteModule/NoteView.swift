@@ -9,7 +9,7 @@ import UIKit
 
 protocol INoteView: AnyObject
 {
-	
+	func showNote(_ note: NotesListEntity)
 }
 
 final class NoteView: UIView
@@ -52,7 +52,16 @@ final class NoteView: UIView
 	}
 }
 
-extension NoteView {
+extension NoteView: INoteView {
+
+	func showNote(_ note: NotesListEntity) {
+		guard let title = note.title else { return }
+		titleTextField.textColor = .black
+		bodyTextField.textColor = .black
+		titleTextField.text = title
+		bodyTextField.text = note.body
+	}
+
 	func setupView() {
 		titleTextField.translatesAutoresizingMaskIntoConstraints = false
 		bodyTextField.translatesAutoresizingMaskIntoConstraints = false

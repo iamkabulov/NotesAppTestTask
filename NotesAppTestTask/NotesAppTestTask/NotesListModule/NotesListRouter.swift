@@ -18,7 +18,7 @@ final class NotesListRouter
 }
 
 extension NotesListRouter: INotesListRouter {
-	func openNoteView(viewController: NotesListViewController, uuid: UUID) {
+	func openNoteView(viewController: NotesListViewController, uuid: UUID?) {
 		let noteInteractor = NoteInteractor()
 		let noteRouter = NoteRouter()
 		let notePresenter = NotePresenter()

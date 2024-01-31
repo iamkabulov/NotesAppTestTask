@@ -11,9 +11,9 @@ final class NoteViewController: UIViewController
 {
 	private let uiview = NoteView()
 	private var _presenter: NotePresenter?
-	private var uuid: UUID
+	private var uuid: UUID?
 
-	init(uuid: UUID) {
+	init(uuid: UUID?) {
 		self.uuid = uuid
 		super.init(nibName: nil, bundle: nil)
 	}
@@ -27,6 +27,9 @@ final class NoteViewController: UIViewController
 		self.title = "Your new note"
 		self.navigationController?.navigationBar.prefersLargeTitles = false
 		self.view = self.uiview
+		self._presenter?.viewDidLoad(view: uiview, viewController: self)
+		guard let id = self.uuid else { return }
+		self._presenter?.loadNote(id: id)
 		// Do any additional setup after loading the view.
 	}
 

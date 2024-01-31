@@ -9,7 +9,7 @@ import Foundation
 
 protocol INotesListInteractor: InteractorProtocol
 {
-	
+	func loadNotes()
 }
 
 final class NotesListInteractor
@@ -19,6 +19,24 @@ final class NotesListInteractor
 }
 
 extension NotesListInteractor: INotesListInteractor {
+	func loadNotes() {
+		let request = NoteData.fetchRequest()
+		do {
+			var notesList: [NotesListEntity] = []
+			let entities = try self.coreData.context.fetch(request)
+			entities.forEach { entity in
+				let id = entity.id
+				let title = entity.title
+				let body = entity.body
+				notesList.append(NotesListEntity(id: id!, title: title!, body: body!))
+			}
+			self._presenter?.showNotes(notes: notesList)
+			print(notesList)
+		} catch {
+			print("loading error: ------")
+		}
+	}
+
 	var presenter: PresenterProtocol? {
 		get {
 			return self._presenter

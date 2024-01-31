@@ -10,6 +10,6 @@ import Foundation
 struct NotesListEntity
 {
 	let id: UUID
-	let title: String
-	let body: String
+	let title: String?
+	let body: String?
 }

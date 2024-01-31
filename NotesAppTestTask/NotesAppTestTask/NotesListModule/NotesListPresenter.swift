@@ -10,28 +10,34 @@ import Foundation
 protocol INotesListPresenter: PresenterProtocol
 {
 	func viewDidLoad(tableView: NotesListView, viewController: NotesListViewController)
-	func openNewNoteScreen(viewController: NotesListViewController, uuid: UUID)
+	func openNewNoteScreen(viewController: NotesListViewController)
+	func showNotes(notes: [NotesListEntity])
 }
 
 final class NotesListPresenter
 {
-	weak var _tableView: NotesListView?
+	weak var _tableView: INotesListView?
 	weak var _viewController: NotesListViewController?
 	private var _interactor: NotesListInteractor?
 	private var _router: NotesListRouter?
 }
 
 extension NotesListPresenter: INotesListPresenter {
+	func showNotes(notes: [NotesListEntity]) {
+		self._tableView?.setData(notes)
+		self._tableView?.reload()
+	}
 
 	func viewDidLoad(tableView: NotesListView, viewController: NotesListViewController) {
 		self._tableView = tableView
 		self._tableView?.noteTappedHandler = { uuid in
 			self._router?.openNoteView(viewController: viewController, uuid: uuid)
 		}
+		self._interactor?.loadNotes()
 	}
 
-	func openNewNoteScreen(viewController: NotesListViewController, uuid: UUID) {
-		self._router?.openNoteView(viewController: viewController, uuid: uuid)
+	func openNewNoteScreen(viewController: NotesListViewController) {
+		self._router?.openNoteView(viewController: viewController, uuid: nil)
 	}
 
 	var viewController: ViewProtocol? {
