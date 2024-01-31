@@ -12,6 +12,7 @@ protocol INotesListPresenter: PresenterProtocol
 	func viewDidLoad(tableView: NotesListView, viewController: NotesListViewController)
 	func openNewNoteScreen(viewController: NotesListViewController)
 	func showNotes(notes: [NotesListEntity])
+	func viewWillAppear()
 }
 
 final class NotesListPresenter
@@ -23,6 +24,11 @@ final class NotesListPresenter
 }
 
 extension NotesListPresenter: INotesListPresenter {
+	func viewWillAppear() {
+		self._interactor?.loadNotes()
+		self._tableView?.reload()
+	}
+
 	func showNotes(notes: [NotesListEntity]) {
 		self._tableView?.setData(notes)
 		self._tableView?.reload()

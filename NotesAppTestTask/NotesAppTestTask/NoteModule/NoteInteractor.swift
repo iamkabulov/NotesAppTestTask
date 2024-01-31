@@ -15,10 +15,16 @@ protocol INoteInteractor: InteractorProtocol
 final class NoteInteractor
 {
 	weak var _presenter: NotePresenter?
-	var coreData = NotesCoreData.shared
+	private var coreData = NotesCoreData.shared
 }
 
 extension NoteInteractor: INoteInteractor {
+
+	func saveNote(_ note: NotesListEntity){
+		coreData.saveNote(note)
+		
+	}
+
 	func loadNoteBy(id: UUID) {
 		coreData.getNoteBy(id: id) { note in
 			self._presenter?.showNote(note)

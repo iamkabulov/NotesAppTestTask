@@ -25,10 +25,13 @@ final class NoteViewController: UIViewController
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.title = "Your new note"
+		let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveNote))
+		self.navigationItem.rightBarButtonItem  = saveButton
 		self.navigationController?.navigationBar.prefersLargeTitles = false
 		self.view = self.uiview
 		self._presenter?.viewDidLoad(view: uiview, viewController: self)
 		guard let id = self.uuid else { return }
+		self.title = "Edit your note"
 		self._presenter?.loadNote(id: id)
 		// Do any additional setup after loading the view.
 	}
@@ -45,5 +48,12 @@ extension NoteViewController: ViewProtocol
 		set {
 			self._presenter = newValue as? NotePresenter
 		}
+	}
+
+	@objc func saveNote() {
+		print("SAVE")
+		let note = uiview.getData()
+		self._presenter?.saveNote(note)
+		self.navigationController?.popViewController(animated: true)
 	}
 }

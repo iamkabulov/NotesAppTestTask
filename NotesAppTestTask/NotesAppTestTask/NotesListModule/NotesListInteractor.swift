@@ -25,10 +25,10 @@ extension NotesListInteractor: INotesListInteractor {
 			var notesList: [NotesListEntity] = []
 			let entities = try self.coreData.context.fetch(request)
 			entities.forEach { entity in
-				let id = entity.id
+				guard let id = entity.id else { return }
 				let title = entity.title
 				let body = entity.body
-				notesList.append(NotesListEntity(id: id!, title: title!, body: body!))
+				notesList.append(NotesListEntity(id: id, title: title, body: body))
 			}
 			self._presenter?.showNotes(notes: notesList)
 			print(notesList)

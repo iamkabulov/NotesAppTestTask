@@ -10,6 +10,7 @@ import UIKit
 protocol INoteView: AnyObject
 {
 	func showNote(_ note: NotesListEntity)
+	func getData() -> NotesListEntity?
 }
 
 final class NoteView: UIView
@@ -23,6 +24,8 @@ final class NoteView: UIView
 			static let large: CGFloat = 16
 		}
 	}
+
+	private var id: UUID?
 
 	lazy private var titleTextField: UITextField = {
 		let textfield = UITextField()
@@ -52,16 +55,7 @@ final class NoteView: UIView
 	}
 }
 
-extension NoteView: INoteView {
-
-	func showNote(_ note: NotesListEntity) {
-		guard let title = note.title else { return }
-		titleTextField.textColor = .black
-		bodyTextField.textColor = .black
-		titleTextField.text = title
-		bodyTextField.text = note.body
-	}
-
+private extension NoteView {
 	func setupView() {
 		titleTextField.translatesAutoresizingMaskIntoConstraints = false
 		bodyTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -84,6 +78,34 @@ extension NoteView: INoteView {
 	func configureView() {
 		titleTextField.delegate = self
 		bodyTextField.delegate = self
+	}
+}
+
+//MARK: - INoteView
+extension NoteView: INoteView {
+	func getData() -> NotesListEntity? {
+		var note: NotesListEntity
+		if let id = id {
+			note = NotesListEntity(id: id,
+								   title: titleTextField.text,
+								   body: bodyTextField.text)
+		}
+		else {
+			note = NotesListEntity(id: UUID(),
+								   title: titleTextField.text,
+								   body: bodyTextField.text)
+		}
+
+		return note
+	}
+
+	func showNote(_ note: NotesListEntity) {
+		titleTextField.textColor = .black
+		bodyTextField.textColor = .black
+
+		id = note.id
+		titleTextField.text = note.title
+		bodyTextField.text = note.body
 	}
 }
 

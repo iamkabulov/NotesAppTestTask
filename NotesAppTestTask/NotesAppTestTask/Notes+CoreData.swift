@@ -45,13 +45,22 @@ public class NotesCoreData {
 		}
 	}
 
-	func saveContext () {
+	func saveContext() {
 		do {
 			try context.save()
 		} catch {
 			let nserror = error as NSError
 			fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
 		}
+	}
+
+	func saveNote(_ note: NotesListEntity) {
+		let newNote = NoteData(context: context)
+		newNote.id = note.id
+		newNote.title = note.title
+		newNote.body = note.body
+
+		self.saveContext()
 	}
 
 	func getNoteBy(id: UUID, completion: @escaping (NotesListEntity?) -> Void) {
