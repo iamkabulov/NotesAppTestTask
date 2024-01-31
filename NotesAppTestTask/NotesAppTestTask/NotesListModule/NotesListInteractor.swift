@@ -15,6 +15,7 @@ protocol INotesListInteractor: InteractorProtocol
 final class NotesListInteractor
 {
 	weak var _presenter: NotesListPresenter?
+	var coreData = NotesCoreData.shared
 }
 
 extension NotesListInteractor: INotesListInteractor {

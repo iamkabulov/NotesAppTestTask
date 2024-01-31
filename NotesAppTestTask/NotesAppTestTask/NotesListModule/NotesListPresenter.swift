@@ -10,6 +10,7 @@ import Foundation
 protocol INotesListPresenter: PresenterProtocol
 {
 	func viewDidLoad(tableView: NotesListView, viewController: NotesListViewController)
+	func openNewNoteScreen(viewController: NotesListViewController, uuid: UUID)
 }
 
 final class NotesListPresenter
@@ -21,11 +22,16 @@ final class NotesListPresenter
 }
 
 extension NotesListPresenter: INotesListPresenter {
+
 	func viewDidLoad(tableView: NotesListView, viewController: NotesListViewController) {
 		self._tableView = tableView
-		self._tableView?.noteTappedHandler = {
-			self._router?.openNoteView(viewController: viewController)
+		self._tableView?.noteTappedHandler = { uuid in
+			self._router?.openNoteView(viewController: viewController, uuid: uuid)
 		}
+	}
+
+	func openNewNoteScreen(viewController: NotesListViewController, uuid: UUID) {
+		self._router?.openNoteView(viewController: viewController, uuid: uuid)
 	}
 
 	var viewController: ViewProtocol? {

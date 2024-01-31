@@ -14,15 +14,15 @@ protocol INotesListRouter: RouterProtocol
 
 final class NotesListRouter
 {
-	
+
 }
 
 extension NotesListRouter: INotesListRouter {
-	func openNoteView(viewController: NotesListViewController) {
+	func openNoteView(viewController: NotesListViewController, uuid: UUID) {
 		let noteInteractor = NoteInteractor()
 		let noteRouter = NoteRouter()
 		let notePresenter = NotePresenter()
-		let noteViewController = NoteViewController()
+		let noteViewController = NoteViewController(uuid: uuid)
 
 		let noteBuilder = ModuleBuilder<NoteViewController, NoteInteractor, NotePresenter, NoteRouter>()
 

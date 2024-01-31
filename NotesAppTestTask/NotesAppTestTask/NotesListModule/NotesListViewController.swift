@@ -20,6 +20,8 @@ class NotesListViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.title = "Notes"
+		let addButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(openNewNoteScreen))
+		self.navigationItem.rightBarButtonItem  = addButton
 		self.navigationController?.navigationBar.prefersLargeTitles = true
 		self._presenter?.viewDidLoad(tableView: self.tableView, viewController: self)
 		// Do any additional setup after loading the view.
@@ -37,5 +39,10 @@ extension NotesListViewController: ViewProtocol
 		set {
 			self._presenter = newValue as? NotesListPresenter
 		}
+	}
+
+	@objc func openNewNoteScreen() {
+		let uuid = UUID()
+		self._presenter?.openNewNoteScreen(viewController: self, uuid: uuid)
 	}
 }
