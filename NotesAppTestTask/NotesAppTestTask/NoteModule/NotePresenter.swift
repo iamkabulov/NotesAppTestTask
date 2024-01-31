@@ -26,7 +26,13 @@ final class NotePresenter
 //MARK: - INotePresenter
 extension NotePresenter: INotePresenter {
 	func saveNote(_ note: NotesListEntity?) {
-		guard let note = note else { return } //TODO: - Make alert
+		guard let note = note else { self._viewController?.showAlert(title: "Something went wrong", message: "Please try again")
+			return
+		}
+		if note.title == "" && note.body == "" {
+			self._viewController?.showAlert(title: "Empty note...", message: "You can not save an empty note. Please fill at least one field")
+			return
+		}
 		self._interactor?.saveNote(note)
 	}
 

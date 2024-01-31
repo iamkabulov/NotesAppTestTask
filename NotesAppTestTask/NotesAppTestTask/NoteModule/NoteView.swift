@@ -29,16 +29,18 @@ final class NoteView: UIView
 
 	lazy private var titleTextField: UITextField = {
 		let textfield = UITextField()
-		textfield.text = "Title of..."
-		textfield.textColor = .lightGray
+		textfield.placeholder = "Title of..."
 		textfield.font = UIFont.preferredFont(forTextStyle: .headline)
 		return textfield
 	}()
 
 	lazy private var bodyTextField: UITextView = {
 		let textView = UITextView()
-		textView.text = "Here we go..."
-		textView.textColor = .lightGray
+		textView.layer.borderColor = UIColor.black.cgColor
+		textView.layer.borderWidth = 0.2
+		textView.layer.cornerRadius = 3
+//		textView.text = "Here we go..."
+//		textView.textColor = .lightGray
 		textView.font = UIFont.preferredFont(forTextStyle: .body)
 		return textView
 	}()
@@ -83,6 +85,7 @@ private extension NoteView {
 
 //MARK: - INoteView
 extension NoteView: INoteView {
+
 	func getData() -> NotesListEntity? {
 		var note: NotesListEntity
 		if let id = id {
@@ -95,14 +98,10 @@ extension NoteView: INoteView {
 								   title: titleTextField.text,
 								   body: bodyTextField.text)
 		}
-
 		return note
 	}
 
 	func showNote(_ note: NotesListEntity) {
-		titleTextField.textColor = .black
-		bodyTextField.textColor = .black
-
 		id = note.id
 		titleTextField.text = note.title
 		bodyTextField.text = note.body
@@ -111,35 +110,24 @@ extension NoteView: INoteView {
 
 //MARK: - TextFieldDelegate
 extension NoteView: UITextFieldDelegate {
-	func textFieldDidBeginEditing(_ textField: UITextField) {
-		if textField.textColor == .lightGray {
-			textField.text = nil
-			textField.textColor = .black
-		}
-	}
 
-	func textFieldDidEndEditing(_ textField: UITextField) {
-		if textField.text == "" {
-			textField.text = "Title of..."
-			textField.textColor = .lightGray
-		}
-	}
 }
 
 //MARK: - TextViewDelegate
 extension NoteView: UITextViewDelegate {
 
-	func textViewDidBeginEditing(_ textView: UITextView) {
-		if textView.textColor == .lightGray {
-			textView.text = nil
-			textView.textColor = .black
-		}
-	}
-
-	func textViewDidEndEditing(_ textView: UITextView) {
-		if textView.text.isEmpty {
-			textView.text = "Here we go..."
-			textView.textColor = .lightGray
-		}
-	}
+	/// self made placeholder
+//	func textViewDidBeginEditing(_ textView: UITextView) {
+//		if textView.textColor == .lightGray {
+//			textView.text = nil
+//			textView.textColor = .black
+//		}
+//	}
+//	/// self made placeholder
+//	func textViewDidEndEditing(_ textView: UITextView) {
+//		if textView.text.isEmpty {
+//			textView.text = "Here we go..."
+//			textView.textColor = .lightGray
+//		}
+//	}
 }

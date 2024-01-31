@@ -49,16 +49,31 @@ public class NotesCoreData {
 		do {
 			try context.save()
 		} catch {
-			let nserror = error as NSError
-			fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+			fatalError("Unresolved error \(error)")
 		}
 	}
 
 	func saveNote(_ note: NotesListEntity) {
-		let newNote = NoteData(context: context)
-		newNote.id = note.id
-		newNote.title = note.title
-		newNote.body = note.body
+		let fetchRequest = Note.fetchRequest()
+		fetchRequest.predicate = NSPredicate(
+			format: "id == %@", note.id as CVarArg
+		)
+
+		do {
+			let results = try context.fetch(fetchRequest)
+			if let notes = results as? [NoteData], let existingNote = notes.first {
+				existingNote.title = note.title
+				existingNote.body = note.body
+			}
+			else {
+				let newNote = NoteData(context: context)
+				newNote.id = note.id
+				newNote.title = note.title
+				newNote.body = note.body
+			}
+		} catch {
+			fatalError("Unresolved error \(error)")
+		}
 
 		self.saveContext()
 	}
@@ -79,8 +94,24 @@ public class NotesCoreData {
 				completion(result)
 			}
 		} catch {
-			let nserror = error as NSError
-			fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+			fatalError("Unresolved error \(error)")
+		}
+	}
+
+	func loadNotes(completion: @escaping ([NotesListEntity]) -> Void) {
+		let request = NoteData.fetchRequest()
+		do {
+			var notesList: [NotesListEntity] = []
+			let entities = try context.fetch(request)
+			entities.forEach { entity in
+				guard let id = entity.id else { return }
+				let title = entity.title
+				let body = entity.body
+				notesList.append(NotesListEntity(id: id, title: title, body: body))
+			}
+			completion(notesList)
+		} catch {
+			fatalError("Unresolved error \(error)")
 		}
 	}
 }

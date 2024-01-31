@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol INoteViewController
+{
+	func showAlert(title: String, message: String)
+}
+
 final class NoteViewController: UIViewController
 {
 	private let uiview = NoteView()
@@ -39,8 +44,14 @@ final class NoteViewController: UIViewController
 
 }
 
-extension NoteViewController: ViewProtocol
+extension NoteViewController: ViewProtocol, INoteViewController
 {
+	func showAlert(title: String, message: String) {
+		let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+		alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+		self.present(alert, animated: true, completion: nil)
+	}
+
 	var presenter: PresenterProtocol? {
 		get {
 			return self._presenter
@@ -51,7 +62,6 @@ extension NoteViewController: ViewProtocol
 	}
 
 	@objc func saveNote() {
-		print("SAVE")
 		let note = uiview.getData()
 		self._presenter?.saveNote(note)
 		self.navigationController?.popViewController(animated: true)
