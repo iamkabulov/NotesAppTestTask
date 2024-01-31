@@ -26,20 +26,25 @@ final class NoteView: UIView
 
 	lazy private var titleTextField: UITextField = {
 		let textfield = UITextField()
-		textfield.placeholder = "Title of..."
+		textfield.text = "Title of..."
+		textfield.textColor = .lightGray
+		textfield.font = UIFont.preferredFont(forTextStyle: .headline)
 		return textfield
 	}()
 
-	lazy private var bodyTextField: UITextField = {
-		let textfield = UITextField()
-		textfield.placeholder = "Here we go..."
-		return textfield
+	lazy private var bodyTextField: UITextView = {
+		let textView = UITextView()
+		textView.text = "Here we go..."
+		textView.textColor = .lightGray
+		textView.font = UIFont.preferredFont(forTextStyle: .body)
+		return textView
 	}()
 
 	init() {
 		super.init(frame: .zero)
 		self.backgroundColor = .systemBackground
 		setupView()
+		configureView()
 	}
 
 	required init?(coder: NSCoder) {
@@ -57,14 +62,53 @@ extension NoteView {
 
 		NSLayoutConstraint.activate([
 			titleTextField.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Metrics.Spacing.small),
-			titleTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Metrics.Spacing.medium),
+			titleTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Metrics.Spacing.large),
 			titleTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Metrics.Spacing.medium),
 			titleTextField.heightAnchor.constraint(equalToConstant: Metrics.height),
 			bodyTextField.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: Metrics.Spacing.medium),
-			bodyTextField.leadingAnchor.constraint(equalTo: titleTextField.leadingAnchor),
+			bodyTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Metrics.Spacing.medium),
 			bodyTextField.trailingAnchor.constraint(equalTo: titleTextField.trailingAnchor),
 			bodyTextField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Metrics.Spacing.medium)
 		])
+	}
 
+	func configureView() {
+		titleTextField.delegate = self
+		bodyTextField.delegate = self
+	}
+}
+
+//MARK: - TextFieldDelegate
+extension NoteView: UITextFieldDelegate {
+	func textFieldDidBeginEditing(_ textField: UITextField) {
+		if textField.textColor == .lightGray {
+			textField.text = nil
+			textField.textColor = .black
+		}
+	}
+
+	func textFieldDidEndEditing(_ textField: UITextField) {
+		if textField.text == "" {
+			textField.text = "Title of..."
+			textField.textColor = .lightGray
+		}
+	}
+}
+
+//MARK: - TextViewDelegate
+extension NoteView: UITextViewDelegate {
+
+	func textViewDidBeginEditing(_ textView: UITextView) {
+		if textView.textColor == .lightGray {
+			textView.text = nil
+			textView.textColor = .black
+		}
+	}
+
+	func textViewDidEndEditing(_ textView: UITextView) {
+		if textView.text.isEmpty {
+			textView.text = "Here we go..."
+			textView.textColor = .lightGray
+		}
 	}
 }
