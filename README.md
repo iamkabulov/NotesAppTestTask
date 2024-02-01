@@ -1,4 +1,5 @@
-# Тестовое задание для курса ШИФТ SHIFT-58597 Kabulov Nursultan Pernebayevich
+# Тестовое задание для курса ШИФТ 
+SHIFT-58597 Kabulov Nursultan Pernebayevich
 
 > [!NOTE]
 > - UIKit, CoreData, и архитектура VIPER
