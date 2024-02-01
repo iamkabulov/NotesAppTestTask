@@ -54,65 +54,33 @@ public class NotesCoreData {
 	}
 
 	func deleteNote(id: UUID) {
-		let fetchRequest = Note.fetchRequest()
-		fetchRequest.predicate = NSPredicate(
-			format: "id == %@", id as CVarArg
-		)
-
-		do {
-			let results = try context.fetch(fetchRequest)
-			if let note = results.first {
-				context.delete(note)
-			}
-		} catch {
-			fatalError("Unresolved error \(error)")
+		if let note = self.fetchById(id) {
+			context.delete(note)
 		}
 		saveContext()
 	}
 
 	func saveNote(_ note: NotesListEntity) {
-		let fetchRequest = Note.fetchRequest()
-		fetchRequest.predicate = NSPredicate(
-			format: "id == %@", note.id as CVarArg
-		)
-
-		do {
-			let results = try context.fetch(fetchRequest)
-			if let notes = results as? [NoteData], let existingNote = notes.first {
-				existingNote.title = note.title
-				existingNote.body = note.body
-			}
-			else {
-				let newNote = NoteData(context: context)
-				newNote.id = note.id
-				newNote.title = note.title
-				newNote.body = note.body
-			}
-		} catch {
-			fatalError("Unresolved error \(error)")
+		if let fetchedNote = self.fetchById(note.id) {
+			fetchedNote.title = note.title
+			fetchedNote.body = note.body
+		} else {
+			let newNote = NoteData(context: context)
+			newNote.id = note.id
+			newNote.title = note.title
+			newNote.body = note.body
 		}
-
-		self.saveContext()
+		saveContext()
 	}
 
 	func getNoteBy(id: UUID, completion: @escaping (NotesListEntity?) -> Void) {
-		let fetchRequest = Note.fetchRequest()
-		fetchRequest.predicate = NSPredicate(
-			format: "id == %@", id as CVarArg
-		)
-
-		do {
-			let results = try context.fetch(fetchRequest)
-			if let notes = results as? [NoteData], let note = notes.first {
-				guard let id = note.id else { return completion(nil) }
-				let result = NotesListEntity(id: id,
-											 title: note.title,
-											 body: note.body)
-				completion(result)
-			}
-		} catch {
-			fatalError("Unresolved error \(error)")
+		if let fetchedNote = self.fetchById(id) {
+			let result = NotesListEntity(id: id,
+										 title: fetchedNote.title,
+										 body: fetchedNote.body)
+			completion(result)
 		}
+		return completion(nil)
 	}
 
 	func loadNotes(completion: @escaping ([NotesListEntity]) -> Void) {
@@ -128,7 +96,24 @@ public class NotesCoreData {
 			}
 			completion(notesList)
 		} catch {
-			fatalError("Unresolved error \(error)")
+			fatalError("Unresolved fetching all notes error \(error)")
 		}
+	}
+
+	private func fetchById(_ id: UUID) -> NoteData? {
+		let fetchRequest = Note.fetchRequest()
+		fetchRequest.predicate = NSPredicate(
+			format: "id == %@", id as CVarArg
+		)
+
+		do {
+			let results = try context.fetch(fetchRequest)
+			if let note = results.first {
+				return note
+			}
+		} catch {
+			fatalError("Unresolved fetching note error \(error)")
+		}
+		return nil
 	}
 }
