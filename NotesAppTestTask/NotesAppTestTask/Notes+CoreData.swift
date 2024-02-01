@@ -53,6 +53,23 @@ public class NotesCoreData {
 		}
 	}
 
+	func deleteNote(id: UUID) {
+		let fetchRequest = Note.fetchRequest()
+		fetchRequest.predicate = NSPredicate(
+			format: "id == %@", id as CVarArg
+		)
+
+		do {
+			let results = try context.fetch(fetchRequest)
+			if let note = results.first {
+				context.delete(note)
+			}
+		} catch {
+			fatalError("Unresolved error \(error)")
+		}
+		saveContext()
+	}
+
 	func saveNote(_ note: NotesListEntity) {
 		let fetchRequest = Note.fetchRequest()
 		fetchRequest.predicate = NSPredicate(

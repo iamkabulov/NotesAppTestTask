@@ -10,6 +10,7 @@ import Foundation
 protocol INotesListInteractor: InteractorProtocol
 {
 	func loadNotes()
+	func deleteNote(id: UUID)
 }
 
 final class NotesListInteractor
@@ -19,11 +20,15 @@ final class NotesListInteractor
 }
 
 extension NotesListInteractor: INotesListInteractor {
+
+	func deleteNote(id: UUID) {
+		self.coreData.deleteNote(id: id)
+	}
+
 	func loadNotes() {
 		self.coreData.loadNotes { notesList in
 			self._presenter?.showNotes(notes: notesList)
 		}
-
 	}
 
 	var presenter: PresenterProtocol? {

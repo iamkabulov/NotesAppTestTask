@@ -36,10 +36,14 @@ extension NotesListPresenter: INotesListPresenter {
 
 	func viewDidLoad(tableView: NotesListView, viewController: NotesListViewController) {
 		self._tableView = tableView
+		self._interactor?.loadNotes()
 		self._tableView?.noteTappedHandler = { uuid in
 			self._router?.openNoteView(viewController: viewController, uuid: uuid)
 		}
-		self._interactor?.loadNotes()
+		self._tableView?.swipeForDeleteHandler = { uuid in
+			self._interactor?.deleteNote(id: uuid)
+			self._tableView?.reload()
+		}
 	}
 
 	func openNewNoteScreen(viewController: NotesListViewController) {

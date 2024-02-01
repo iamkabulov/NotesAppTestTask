@@ -10,6 +10,7 @@ import UIKit
 protocol INotesListView: AnyObject
 {
 	var noteTappedHandler: ((UUID) -> Void)? { get set }
+	var swipeForDeleteHandler: ((UUID) -> Void)? { get set }
 	func setData(_ notes: [NotesListEntity])
 	func reload()
 }
@@ -18,6 +19,7 @@ final class NotesListView: UITableView
 {
 	private let tableView = UITableView()
 	var noteTappedHandler: ((UUID) -> Void)?
+	var swipeForDeleteHandler: ((UUID) -> Void)?
 	private var notes: [NotesListEntity] = []
 
 	override init(frame: CGRect, style: UITableView.Style) {
@@ -77,7 +79,14 @@ extension NotesListView: UITableViewDataSource {
 		return cell
 	}
 
-
+	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+		if editingStyle == .delete {
+			let id = notes[indexPath.item].id
+			swipeForDeleteHandler?(id)
+			notes.remove(at: indexPath.row)
+			tableView.deleteRows(at: [indexPath], with: .fade)
+		}
+	}
 }
 
 //MARK: - UITableViewDelegate
