@@ -23,6 +23,7 @@ final class NotesListPresenter
 	private var _router: NotesListRouter?
 }
 
+//MARK: - INotesListPresenter
 extension NotesListPresenter: INotesListPresenter {
 	func viewWillAppear() {
 		self._interactor?.loadNotes()

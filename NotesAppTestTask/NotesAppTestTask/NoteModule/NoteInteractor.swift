@@ -18,6 +18,7 @@ final class NoteInteractor
 	private var coreData = NotesCoreData.shared
 }
 
+//MARK: - INoteInteractor
 extension NoteInteractor: INoteInteractor {
 
 	func saveNote(_ note: NotesListEntity){

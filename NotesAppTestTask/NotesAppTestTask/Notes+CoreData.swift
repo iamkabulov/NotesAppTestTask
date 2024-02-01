@@ -8,8 +8,15 @@
 import Foundation
 import CoreData
 
-
-public class Note: NSManagedObject {
+protocol INotesCoreData: AnyObject
+{
+	func saveNote(_ note: NotesListEntity)
+	func getNoteBy(id: UUID, completion: @escaping (NotesListEntity?) -> Void)
+	func loadNotes(completion: @escaping ([NotesListEntity]) -> Void)
+	func deleteNote(id: UUID)
+}
+public class Note: NSManagedObject
+{
 
 }
 
@@ -29,8 +36,8 @@ extension Note: Identifiable {
 
 }
 
-public class NotesCoreData {
-
+public class NotesCoreData
+{
 	let container: NSPersistentContainer
 	let context: NSManagedObjectContext
 	static let shared = NotesCoreData()
@@ -44,7 +51,10 @@ public class NotesCoreData {
 			print("Container: Something went wrong")
 		}
 	}
+}
 
+//MARK: - INotesCoreData
+extension NotesCoreData: INotesCoreData {
 	func saveContext() {
 		do {
 			try context.save()

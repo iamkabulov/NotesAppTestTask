@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NotesListViewController: UIViewController {
+final class NotesListViewController: UIViewController {
 
 	private let tableView = NotesListView()
 	private var _presenter: NotesListPresenter?
@@ -34,6 +34,7 @@ class NotesListViewController: UIViewController {
 
 }
 
+//MARK: - ViewProtocol
 extension NotesListViewController: ViewProtocol
 {
 	var presenter: PresenterProtocol? {

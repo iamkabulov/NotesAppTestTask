@@ -16,8 +16,7 @@ protocol INoteView: AnyObject
 final class NoteView: UIView
 {
 	private enum Metrics {
-		static let height: CGFloat = 32
-		static let width: CGFloat = 56
+		static let height: CGFloat = 36
 		enum Spacing {
 			static let small: CGFloat = 4
 			static let medium: CGFloat = 8
@@ -30,6 +29,9 @@ final class NoteView: UIView
 	lazy private var titleTextField: UITextField = {
 		let textfield = UITextField()
 		textfield.placeholder = "Title of..."
+		textfield.textAlignment = .center
+		textfield.layer.borderWidth = 0.2
+		textfield.layer.cornerRadius = 3
 		textfield.font = UIFont.preferredFont(forTextStyle: .headline)
 		return textfield
 	}()
@@ -39,8 +41,6 @@ final class NoteView: UIView
 		textView.layer.borderColor = UIColor.black.cgColor
 		textView.layer.borderWidth = 0.2
 		textView.layer.cornerRadius = 3
-//		textView.text = "Here we go..."
-//		textView.textColor = .lightGray
 		textView.font = UIFont.preferredFont(forTextStyle: .body)
 		return textView
 	}()
@@ -64,6 +64,7 @@ final class NoteView: UIView
 	}
 }
 
+//MARK: - Note Extension
 private extension NoteView {
 	func setupView() {
 		titleTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -76,7 +77,7 @@ private extension NoteView {
 
 		NSLayoutConstraint.activate([
 			titleTextField.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Metrics.Spacing.small),
-			titleTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Metrics.Spacing.large),
+			titleTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Metrics.Spacing.medium),
 			titleTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Metrics.Spacing.medium),
 			titleTextField.heightAnchor.constraint(equalToConstant: Metrics.height),
 			bodyTextField.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: Metrics.Spacing.medium),
@@ -90,7 +91,6 @@ private extension NoteView {
 
 	func configureView() {
 		titleTextField.delegate = self
-		bodyTextField.delegate = self
 	}
 }
 
@@ -134,10 +134,5 @@ extension NoteView: UITextFieldDelegate {
 		bodyTextField.becomeFirstResponder()
 		return true
 	}
-
-}
-
-//MARK: - TextViewDelegate
-extension NoteView: UITextViewDelegate {
 
 }

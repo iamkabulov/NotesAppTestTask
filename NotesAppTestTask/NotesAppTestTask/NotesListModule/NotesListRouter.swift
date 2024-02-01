@@ -9,7 +9,7 @@ import UIKit
 
 protocol INotesListRouter: RouterProtocol
 {
-	
+	func openNoteView(viewController: NotesListViewController, uuid: UUID?)
 }
 
 final class NotesListRouter
@@ -17,6 +17,7 @@ final class NotesListRouter
 
 }
 
+//MARK: - INotesListRouter
 extension NotesListRouter: INotesListRouter {
 	func openNoteView(viewController: NotesListViewController, uuid: UUID?) {
 		let noteInteractor = NoteInteractor()

@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol INoteViewController
+protocol INoteViewController: ViewProtocol
 {
 	func showAlert(title: String, message: String)
 }
@@ -44,7 +44,8 @@ final class NoteViewController: UIViewController
 
 }
 
-extension NoteViewController: ViewProtocol, INoteViewController
+//MARK: - INoteViewController
+extension NoteViewController: INoteViewController
 {
 	func showAlert(title: String, message: String) {
 		let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)

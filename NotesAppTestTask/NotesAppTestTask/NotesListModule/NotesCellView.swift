@@ -7,19 +7,20 @@
 
 import UIKit
 
+protocol INotesCellView: AnyObject
+{
+	func setData(note: NotesListEntity)
+}
+
 final class NotesCellView: UITableViewCell
 {
 	static let reuseId = "NotesCellViewId"
-	static let rowHeight: CGFloat = 60
+	static let rowHeight: CGFloat = 62
 
-	private enum Metrics {
-		static let height: CGFloat = 32
-		static let width: CGFloat = 56
-		enum Spacing {
-			static let small: CGFloat = 4
-			static let medium: CGFloat = 8
-			static let large: CGFloat = 16
-		}
+	private enum Spacing {
+		static let small: CGFloat = 4
+		static let medium: CGFloat = 8
+		static let large: CGFloat = 16
 	}
 
 	lazy private var title: UILabel = {
@@ -56,7 +57,8 @@ final class NotesCellView: UITableViewCell
 	}
 }
 
-extension NotesCellView {
+//MARK: - NotesCellView Extension
+private extension NotesCellView {
 	func setupCellView() {
 		title.translatesAutoresizingMaskIntoConstraints = false
 		body.translatesAutoresizingMaskIntoConstraints = false
@@ -66,17 +68,20 @@ extension NotesCellView {
 		contentView.addSubview(body)
 		contentView.addSubview(arrowImage)
 		NSLayoutConstraint.activate([
-			title.topAnchor.constraint(equalTo: topAnchor, constant: Metrics.Spacing.medium),
-			title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Metrics.Spacing.large),
-			title.trailingAnchor.constraint(equalTo: arrowImage.trailingAnchor, constant: -Metrics.Spacing.large),
-			body.topAnchor.constraint(equalTo: title.bottomAnchor, constant: Metrics.Spacing.small),
+			title.topAnchor.constraint(equalTo: topAnchor, constant: Spacing.medium),
+			title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.large),
+			title.trailingAnchor.constraint(equalTo: arrowImage.trailingAnchor, constant: -Spacing.large),
+			body.topAnchor.constraint(equalTo: title.bottomAnchor, constant: Spacing.small),
 			body.leadingAnchor.constraint(equalTo: title.leadingAnchor),
 			body.trailingAnchor.constraint(equalTo: title.trailingAnchor),
 			arrowImage.centerYAnchor.constraint(equalTo: centerYAnchor),
-			arrowImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Metrics.Spacing.large)
+			arrowImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.large)
 		])
 	}
+}
 
+//MARK: - INotesCellView
+extension NotesCellView: INotesCellView {
 	func setData(note: NotesListEntity) {
 		self.title.text = note.title
 		self.body.text = note.body

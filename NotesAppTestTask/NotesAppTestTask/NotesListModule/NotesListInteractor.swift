@@ -19,6 +19,7 @@ final class NotesListInteractor
 	var coreData = NotesCoreData.shared
 }
 
+//MARK: - INotesListInteractor
 extension NotesListInteractor: INotesListInteractor {
 
 	func deleteNote(id: UUID) {

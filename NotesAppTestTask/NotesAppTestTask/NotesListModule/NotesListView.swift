@@ -34,6 +34,7 @@ final class NotesListView: UITableView
 	}
 }
 
+//MARK: - INotesListView
 extension NotesListView: INotesListView {
 	func reload() {
 		self.tableView.reloadData()
@@ -71,11 +72,8 @@ extension NotesListView: UITableViewDataSource {
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = self.tableView.dequeueReusableCell(withIdentifier: NotesCellView.reuseId, for: indexPath) as? NotesCellView
-		//TODO: -
-		guard let cell = cell else { return UITableViewCell() }
+		guard let cell = self.tableView.dequeueReusableCell(withIdentifier: NotesCellView.reuseId, for: indexPath) as? NotesCellView else { return UITableViewCell() }
 		cell.setData(note: notes[indexPath.item])
-
 
 		return cell
 	}
@@ -85,7 +83,7 @@ extension NotesListView: UITableViewDataSource {
 			let id = notes[indexPath.item].id
 			swipeForDeleteHandler?(id)
 			notes.remove(at: indexPath.row)
-			tableView.deleteRows(at: [indexPath], with: .fade)
+			self.tableView.deleteRows(at: [indexPath], with: .fade)
 		}
 	}
 }
