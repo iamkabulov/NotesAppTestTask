@@ -31,7 +31,7 @@ final class NoteViewController: UIViewController
 		super.viewDidLoad()
 		self.title = "Your new note"
 		let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveNote))
-		self.navigationItem.rightBarButtonItem  = saveButton
+		self.navigationItem.rightBarButtonItem = saveButton
 		self.navigationController?.navigationBar.prefersLargeTitles = false
 		self.view = self.uiview
 		self._presenter?.viewDidLoad(view: uiview, viewController: self)

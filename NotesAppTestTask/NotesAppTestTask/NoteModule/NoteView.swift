@@ -83,7 +83,6 @@ private extension NoteView {
 			bodyTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Metrics.Spacing.medium),
 			bodyTextField.trailingAnchor.constraint(equalTo: titleTextField.trailingAnchor),
 			bodyTextField.bottomAnchor.constraint(equalTo: dateLabel.topAnchor, constant: -Metrics.Spacing.medium),
-			dateLabel.leadingAnchor.constraint(equalTo: titleTextField.leadingAnchor),
 			dateLabel.trailingAnchor.constraint(equalTo: titleTextField.trailingAnchor),
 			dateLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -Metrics.Spacing.medium)
 		])
@@ -131,24 +130,14 @@ extension NoteView: INoteView {
 
 //MARK: - TextFieldDelegate
 extension NoteView: UITextFieldDelegate {
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		bodyTextField.becomeFirstResponder()
+		return true
+	}
 
 }
 
 //MARK: - TextViewDelegate
 extension NoteView: UITextViewDelegate {
 
-	/// self made placeholder
-//	func textViewDidBeginEditing(_ textView: UITextView) {
-//		if textView.textColor == .lightGray {
-//			textView.text = nil
-//			textView.textColor = .black
-//		}
-//	}
-//	/// self made placeholder
-//	func textViewDidEndEditing(_ textView: UITextView) {
-//		if textView.text.isEmpty {
-//			textView.text = "Here we go..."
-//			textView.textColor = .lightGray
-//		}
-//	}
 }

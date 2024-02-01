@@ -40,7 +40,8 @@ extension NotesListView: INotesListView {
 	}
 
 	func setData(_ notes: [NotesListEntity]) {
-		self.notes = notes
+		let sorted = notes.sorted { $0.date > $1.date }
+		self.notes = sorted
 	}
 
 	func setupTableView() {
