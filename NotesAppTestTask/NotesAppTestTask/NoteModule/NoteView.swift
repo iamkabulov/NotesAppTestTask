@@ -45,6 +45,13 @@ final class NoteView: UIView
 		return textView
 	}()
 
+	lazy private var dateLabel: UILabel = {
+		let label = UILabel()
+		label.textColor = .black
+		label.font = .preferredFont(forTextStyle: .footnote)
+		return label
+	}()
+
 	init() {
 		super.init(frame: .zero)
 		self.backgroundColor = .systemBackground
@@ -61,9 +68,11 @@ private extension NoteView {
 	func setupView() {
 		titleTextField.translatesAutoresizingMaskIntoConstraints = false
 		bodyTextField.translatesAutoresizingMaskIntoConstraints = false
+		dateLabel.translatesAutoresizingMaskIntoConstraints = false
 
 		addSubview(titleTextField)
 		addSubview(bodyTextField)
+		addSubview(dateLabel)
 
 		NSLayoutConstraint.activate([
 			titleTextField.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Metrics.Spacing.small),
@@ -73,7 +82,10 @@ private extension NoteView {
 			bodyTextField.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: Metrics.Spacing.medium),
 			bodyTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Metrics.Spacing.medium),
 			bodyTextField.trailingAnchor.constraint(equalTo: titleTextField.trailingAnchor),
-			bodyTextField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Metrics.Spacing.medium)
+			bodyTextField.bottomAnchor.constraint(equalTo: dateLabel.topAnchor, constant: -Metrics.Spacing.medium),
+			dateLabel.leadingAnchor.constraint(equalTo: titleTextField.leadingAnchor),
+			dateLabel.trailingAnchor.constraint(equalTo: titleTextField.trailingAnchor),
+			dateLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -Metrics.Spacing.medium)
 		])
 	}
 
@@ -91,20 +103,29 @@ extension NoteView: INoteView {
 		if let id = id {
 			note = NotesListEntity(id: id,
 								   title: titleTextField.text,
-								   body: bodyTextField.text)
+								   body: bodyTextField.text,
+								   date: Date.now)
 		}
 		else {
 			note = NotesListEntity(id: UUID(),
 								   title: titleTextField.text,
-								   body: bodyTextField.text)
+								   body: bodyTextField.text,
+								   date: Date.now)
 		}
 		return note
 	}
 
 	func showNote(_ note: NotesListEntity) {
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateStyle = .medium
+		dateFormatter.timeStyle = .short
+
+		let formattedDate = dateFormatter.string(from: note.date)
+
 		id = note.id
 		titleTextField.text = note.title
 		bodyTextField.text = note.body
+		dateLabel.text = formattedDate
 	}
 }
 

@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			newNote.id = UUID()
 			newNote.title = "Initial Note"
 			newNote.body = "This is an automatically generated note."
+			newNote.date = Date.now
 			
 			NotesCoreData.shared.saveContext()
 		}

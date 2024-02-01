@@ -49,7 +49,7 @@ public class NotesCoreData {
 		do {
 			try context.save()
 		} catch {
-			fatalError("Unresolved error \(error)")
+			fatalError("Unresolved saving error \(error)")
 		}
 	}
 
@@ -64,11 +64,13 @@ public class NotesCoreData {
 		if let fetchedNote = self.fetchById(note.id) {
 			fetchedNote.title = note.title
 			fetchedNote.body = note.body
+			fetchedNote.date = note.date
 		} else {
 			let newNote = NoteData(context: context)
 			newNote.id = note.id
 			newNote.title = note.title
 			newNote.body = note.body
+			newNote.date = note.date
 		}
 		saveContext()
 	}
@@ -77,7 +79,8 @@ public class NotesCoreData {
 		if let fetchedNote = self.fetchById(id) {
 			let result = NotesListEntity(id: id,
 										 title: fetchedNote.title,
-										 body: fetchedNote.body)
+										 body: fetchedNote.body,
+										 date: Date.now)
 			completion(result)
 		}
 		return completion(nil)
@@ -89,10 +92,11 @@ public class NotesCoreData {
 			var notesList: [NotesListEntity] = []
 			let entities = try context.fetch(request)
 			entities.forEach { entity in
-				guard let id = entity.id else { return }
+				guard let id = entity.id,
+				let date = entity.date else { return }
 				let title = entity.title
 				let body = entity.body
-				notesList.append(NotesListEntity(id: id, title: title, body: body))
+				notesList.append(NotesListEntity(id: id, title: title, body: body, date: date))
 			}
 			completion(notesList)
 		} catch {
