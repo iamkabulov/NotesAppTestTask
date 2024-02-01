@@ -1,7 +1,7 @@
 # Тестовое задание для курса ШИФТ SHIFT-58597 Kabulov Nursultan Pernebayevich
 
 > [!NOTE]
-> - UIkit, CoreData, и архитектура VIPER
+> - UIKit, CoreData, и архитектура VIPER
 > - При первом запуске по умолчанию создается заметка;
 > - Создание заметки;
 > - Сохранение заметки для в CoreData;
